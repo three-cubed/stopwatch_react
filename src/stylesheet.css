@@ -1,0 +1,65 @@
+#app {
+    background-color: rgb(221, 221, 221);
+    background-image: url(pics/circuit-board.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(20px + 4vmin);
+    padding-top: 8%;
+}
+
+#buttonComponent {
+    display: flex;
+    margin: 2%;
+}
+
+button {
+    min-width: 16vmin;
+    margin: 5px;
+    background-color: LightYellow;
+    border-radius: 8%;
+    outline: none;
+}
+
+button:active {
+    background-color: yellow;
+}
+
+button:hover {
+    filter: brightness(95%);
+}
+
+.btn-clr {
+    background-color: rgb(255,216,10);
+}
+
+.btn-clr:active {
+    background-color: rgb(255,175,0);
+}
+
+#stopWatchDisplay {
+    border: 4px solid green;
+    border-radius: 8%;
+    background-color: rgb(240, 240, 240);
+}
+
+#lapLog {
+    display: flex; 
+    flex-wrap: wrap; 
+    flex-direction: row;
+    align-items: center; 
+    justify-content: center;
+    max-width: 90%; 
+} 
+
+.individualLapTime {
+    margin: 5px;
+    background-color: rgb(240, 240, 240);
+    font-size: calc(15px + 3vmin);
+    border: 2.2px solid green;
+    border-radius: 8%;
+    padding: 10px;
+}

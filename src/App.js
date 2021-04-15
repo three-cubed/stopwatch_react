@@ -5,11 +5,11 @@ import ButtonComponent from './components/ButtonComponent';
 import LapLog from './components/LapLog';
 
 let isGo = false;
-let isLapInfoToDisplay = false;
-let lapTimesStored = [];
+let haveLapInfoToDisplay = false;
+let lapTimesOnLoading = [];
 if (localStorage.getItem('lapTimesLocal') !== null && localStorage.getItem('lapTimesLocal') !== 'undefined') {
-        isLapInfoToDisplay = true;
-        lapTimesStored = JSON.parse(localStorage.getItem('lapTimesLocal'));
+        haveLapInfoToDisplay = true;
+        lapTimesOnLoading = JSON.parse(localStorage.getItem('lapTimesLocal'));
 }
 let elapsedCentiseconds = 0;
 let startPoint;
@@ -17,18 +17,17 @@ function defineStartPoint() {
         startPoint = Date.now() - (elapsedCentiseconds*10)
 }
 
-
 function App() {
     const [centisecs, setCentisecs] = useState('00');
     const [seconds, setSeconds] = useState('00');
     const [minutes, setMinutes] = useState('00');
     const [hours, setHours] = useState('00');
-    const [lapTimes, setLapTimes] = useState(lapTimesStored);
+    const [lapTimes, setLapTimes] = useState(lapTimesOnLoading);
 
     function recordLapTime() {
         if (isGo === false) return;
-        isLapInfoToDisplay = true;
-        let newLapTime = `${hours}:${minutes}:${seconds}:${centisecs}`;
+        haveLapInfoToDisplay = true;
+        let newLapTime = `${hours} : ${minutes} : ${seconds} : ${centisecs}`;
         setLapTimes([...lapTimes, newLapTime]);
     }
 
@@ -95,12 +94,12 @@ function App() {
     }
 
     function clearLap() {
-        isLapInfoToDisplay = false;
+        haveLapInfoToDisplay = false;
         setLapTimes([]);
     }
 
     return (
-        <div>
+        <div id="app">
             <StopwatchDisplay 
                 centisecsDisplayed={centisecs} 
                 secondsDisplayed={seconds} 
@@ -115,7 +114,7 @@ function App() {
                 clearLap={clearLap} 
             />
             {
-              isLapInfoToDisplay
+              haveLapInfoToDisplay
               &&
               <LapLog 
                   lapTimes={lapTimes}

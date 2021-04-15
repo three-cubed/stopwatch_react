@@ -1,9 +1,9 @@
 const StopwatchDisplay = (props) => {
 
     return (
-        <>
-            <p>Stopwatch</p>
+        <div id='stopWatchDisplay'>
             <p>
+            &emsp;
             <span id='hourDisplay'>{props.hoursDisplayed}</span>
             &ensp;:&ensp;
             <span id='minuteDisplay'>{props.minutesDisplayed}</span>
@@ -11,8 +11,9 @@ const StopwatchDisplay = (props) => {
             <span id='secondDisplay'>{props.secondsDisplayed}</span>
             &ensp;:&ensp;
             <span id='centisecDisplay'>{props.centisecsDisplayed}</span>
+            &emsp;
             </p>
-        </>
+        </div>
     )
 }
 

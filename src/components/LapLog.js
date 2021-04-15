@@ -1,13 +1,11 @@
 const LapLog = (props) => {
 
     return (
-        <>
-            <br />
+        <div id='lapLog'>
                 {props.lapTimes.map((lapTime) => (
-                    <h5 key={lapTime}>{lapTime}</h5>
+                    <div class='individualLapTime' key={lapTime}>&emsp;{lapTime}&emsp;</div>
                 ))}
-            <br />
-        </>
+        </div>
     )
 }
 
