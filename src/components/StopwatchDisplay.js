@@ -2,8 +2,10 @@ const StopwatchDisplay = (props) => {
 
     return (
         <>
-            <p>interval timer</p>
+            <p>Stopwatch</p>
             <p>
+            <span id='hourDisplay'>{props.hoursDisplayed}</span>
+            &ensp;:&ensp;
             <span id='minuteDisplay'>{props.minutesDisplayed}</span>
             &ensp;:&ensp;
             <span id='secondDisplay'>{props.secondsDisplayed}</span>

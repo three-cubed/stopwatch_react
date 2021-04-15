@@ -4,7 +4,7 @@ const ButtonComponent = (props) => {
         <>
             <br />
             <button onClick={props.runMe}>GO</button>
-            <button onClick={props.stopMe}>STOP</button>
+            <button onClick={props.stopMe}>PAUSE</button>
             <button onClick={props.clearMe}>CLEAR</button>
             <button onClick={props.recordLapTime}>LAP</button>
             <button onClick={props.clearLap}>LAP CLEAR</button>

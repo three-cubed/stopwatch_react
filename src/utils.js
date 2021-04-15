@@ -1,4 +1,4 @@
-function to2chars(num) {
+function to2charString(num) {
     let numString;
                 if (num < 10) {
                   numString = '0' + num.toString();
@@ -8,12 +8,4 @@ function to2chars(num) {
     return numString;
 }
 
-function checkNumOverflow(currNum, nextNum, limit) {
-                if (currNum >= limit) {
-                    nextNum ++;
-                    currNum = 0;
-                }
-                return [currNum, nextNum];
-}
-
-export { to2chars, checkNumOverflow };
+export { to2charString };
