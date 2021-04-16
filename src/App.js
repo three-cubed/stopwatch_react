@@ -8,13 +8,13 @@ let isGo = false;
 let haveLapInfoToDisplay = false;
 let lapTimesOnLoading = [];
 if (localStorage.getItem('lapTimesLocal') !== null && localStorage.getItem('lapTimesLocal') !== 'undefined') {
-        haveLapInfoToDisplay = true;
-        lapTimesOnLoading = JSON.parse(localStorage.getItem('lapTimesLocal'));
+    haveLapInfoToDisplay = true;
+    lapTimesOnLoading = JSON.parse(localStorage.getItem('lapTimesLocal'));
 }
 let elapsedCentiseconds = 0;
 let startPoint;
 function defineStartPoint() {
-        startPoint = Date.now() - (elapsedCentiseconds*10)
+    startPoint = Date.now() - (elapsedCentiseconds * 10);
 }
 
 function App() {
@@ -27,54 +27,54 @@ function App() {
     function recordLapTime() {
         if (isGo === false) return;
         haveLapInfoToDisplay = true;
-        let newLapTime = `${hours} : ${minutes} : ${seconds} : ${centisecs}`;
+        const newLapTime = `${hours} : ${minutes} : ${seconds} : ${centisecs}`;
         setLapTimes([...lapTimes, newLapTime]);
     }
 
     useEffect(() => {
         localStorage.setItem('lapTimesLocal', JSON.stringify(lapTimes));
-    }, [lapTimes])
+    }, [lapTimes]);
 
     function runMe() {
         if (isGo === true) return; // prevents the function running simultaneously with itself.
         isGo = true;
         defineStartPoint();
-        var runInterval = window.setInterval(function(){
-                if (isGo === false) {
-                    window.clearInterval(runInterval);
-                } else {
-                    elapsedCentiseconds = Math.floor((Date.now() - startPoint)/10);
-                    let remainder = elapsedCentiseconds;
-    
-                    let minuteNum = 0;
-                    let secondNum = 0;
-                    let centisecNum = 0;
-                    let hourNum = 0;
-    
-                    while (remainder >= 360000) {
-                        hourNum ++;
-                        remainder -= 360000
-                    }    
-                    while (remainder >= 6000) {
-                        minuteNum ++;
-                        remainder -= 6000
-                    }    
-                    while (remainder >= 100) {
-                        secondNum ++;
-                        remainder -= 100
-                    }    
-                    centisecNum = remainder;
-    
-                    let centisecString = to2charString(centisecNum);
-                    let secondString = to2charString(secondNum);
-                    let minuteString = to2charString(minuteNum);
-                    let hourString = to2charString(hourNum);
-    
-                    setCentisecs(centisecString);
-                    setSeconds(secondString);
-                    setMinutes(minuteString);
-                    setHours(hourString);
+        const runInterval = window.setInterval(() => {
+            if (isGo === false) {
+                window.clearInterval(runInterval);
+            } else {
+                elapsedCentiseconds = Math.floor((Date.now() - startPoint) / 10);
+                let remainder = elapsedCentiseconds;
+
+                let minuteNum = 0;
+                let secondNum = 0;
+                let centisecNum = 0;
+                let hourNum = 0;
+
+                while (remainder >= 360000) {
+                    hourNum++;
+                    remainder -= 360000;
                 }
+                while (remainder >= 6000) {
+                    minuteNum++;
+                    remainder -= 6000;
+                }
+                while (remainder >= 100) {
+                    secondNum++;
+                    remainder -= 100;
+                }
+                centisecNum = remainder;
+
+                const centisecString = to2charString(centisecNum);
+                const secondString = to2charString(secondNum);
+                const minuteString = to2charString(minuteNum);
+                const hourString = to2charString(hourNum);
+
+                setCentisecs(centisecString);
+                setSeconds(secondString);
+                setMinutes(minuteString);
+                setHours(hourString);
+            }
         },
         10);
     }

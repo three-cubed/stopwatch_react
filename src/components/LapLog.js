@@ -1,5 +1,5 @@
 const LapLog = (props) => {
-
+    
     return (
         <div id='lapLog'>
                 {props.lapTimes.map((lapTime) => (
