@@ -4,13 +4,14 @@ import StopwatchDisplay from './components/StopwatchDisplay';
 import ButtonComponent from './components/ButtonComponent';
 import LapLog from './components/LapLog';
 
-let isGo = false;
+let timerRunning = false;
 let haveLapInfoToDisplay = false;
 let lapTimesOnLoading = [];
 if (localStorage.getItem('lapTimesLocal') !== null && localStorage.getItem('lapTimesLocal') !== 'undefined') {
     haveLapInfoToDisplay = true;
     lapTimesOnLoading = JSON.parse(localStorage.getItem('lapTimesLocal'));
 }
+
 let elapsedCentiseconds = 0;
 let startPoint;
 function defineStartPoint() {
@@ -25,7 +26,7 @@ function App() {
     const [lapTimes, setLapTimes] = useState(lapTimesOnLoading);
 
     function recordLapTime() {
-        if (isGo === false) return;
+        if (timerRunning === false) return;
         haveLapInfoToDisplay = true;
         const newLapTime = `${hours} : ${minutes} : ${seconds} : ${centisecs}`;
         setLapTimes([...lapTimes, newLapTime]);
@@ -35,12 +36,12 @@ function App() {
         localStorage.setItem('lapTimesLocal', JSON.stringify(lapTimes));
     }, [lapTimes]);
 
-    function runMe() {
-        if (isGo === true) return; // prevents the function running simultaneously with itself.
-        isGo = true;
+    function runTimer() {
+        if (timerRunning === true) return; // prevents the function running simultaneously with itself.
+        timerRunning = true;
         defineStartPoint();
         const runInterval = window.setInterval(() => {
-            if (isGo === false) {
+            if (timerRunning === false) {
                 window.clearInterval(runInterval);
             } else {
                 elapsedCentiseconds = Math.floor((Date.now() - startPoint) / 10);
@@ -74,26 +75,28 @@ function App() {
                 setSeconds(secondString);
                 setMinutes(minuteString);
                 setHours(hourString);
+
+                if (elapsedCentiseconds > 35999999) startPoint = Date.now(); // Restart if reach 100 hours.
             }
         },
         10);
     }
 
-    function stopMe() {
-        isGo = false;
+    function stopTimer() {
+        timerRunning = false;
     }
 
-    function clearMe() {
-        stopMe();
+    function clearTimer() {
+        stopTimer();
         elapsedCentiseconds = 0;
         setCentisecs('00');
         setSeconds('00');
         setMinutes('00');
         setHours('00');
-        clearLap();
+        clearLaps();
     }
 
-    function clearLap() {
+    function clearLaps() {
         haveLapInfoToDisplay = false;
         setLapTimes([]);
     }
@@ -107,11 +110,11 @@ function App() {
                 hoursDisplayed={hours}
             />
             <ButtonComponent 
-                runMe={runMe} 
-                stopMe={stopMe}
-                clearMe={clearMe} 
+                runTimer={runTimer} 
+                stopTimer={stopTimer}
+                clearTimer={clearTimer} 
                 recordLapTime={recordLapTime} 
-                clearLap={clearLap} 
+                clearLaps={clearLaps} 
             />
             {
               haveLapInfoToDisplay
