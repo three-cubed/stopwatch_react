@@ -8,7 +8,7 @@ The watch uses the format 00 : 00 : 00 : 00,
 i.e. displays hours, minutes, seconds, and centiseconds.
 On reaching 100 hours, the stopwatch will restart at zero and continue to run.
 
-### vViewing the application online
+### Viewing the application online
 Go to the deployment at `https://stopwatch-with-react.herokuapp.com/`.
 
 ### Setting up the application for yourself
