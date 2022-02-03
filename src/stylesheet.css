@@ -18,6 +18,7 @@
 
 button {
     min-width: 16vmin;
+    min-height: 44px;
     margin: 5px;
     background-color: LightYellow;
     border-radius: 8%;
