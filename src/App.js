@@ -110,11 +110,11 @@ function App() {
                 hoursDisplayed={hours}
             />
             <ButtonComponent 
-                runTimer={runTimer} 
+                runTimer={runTimer}
                 stopTimer={stopTimer}
-                clearTimer={clearTimer} 
+                clearTimer={clearTimer}
                 recordLapTime={recordLapTime} 
-                clearLaps={clearLaps} 
+                clearLaps={clearLaps}
             />
             {
               haveLapInfoToDisplay
