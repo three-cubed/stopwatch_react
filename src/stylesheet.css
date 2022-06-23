@@ -45,11 +45,7 @@ button:hover {
     border: 4px solid green;
     border-radius: 8%;
     background-color: rgb(240, 240, 240);
-    width: calc(415px + 10vmin);
-    max-width: 95%;
-    min-width: 353px;
-    /* This min-width is to ensure acceptable mobile phone display */
-    /* Remember, min-width always wins over max-width! */
+    min-width: calc(412px + 12vmin);
     text-align: center;
 }
 
